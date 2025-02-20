@@ -8,7 +8,7 @@ import re
 
 def preprocess_input(user_input):
     """Preprocess user input by removing common stop words and extracting names."""
-    stop_words = {'i', 'like', 'want', 'prefer', 'looking for', 'set', 'in', 'shows', 'show', 'movie', 'movies', 'the', 'a', 'an', 'of', 'to', 'and', 'is', 'on', 'at', 'with'}
+    stop_words = {'i', 'like', 'love', 'want', 'prefer', 'looking for', 'set', 'in', 'shows', 'show', 'movie', 'movies', 'the', 'a', 'an', 'of', 'to', 'and', 'is', 'on', 'at', 'with'}
     words = user_input.lower().split()
     filtered_words = [word for word in words if word not in stop_words]
     normalized_words = [normalize_genre(word) for word in filtered_words]
@@ -94,7 +94,7 @@ def filter_by_exact_names(data, names):
     return filtered_data if not filtered_data.empty else data  # Default to full dataset if no match
 
 
-def compute_similarity(data, user_input, top_n=10):
+def compute_similarity(data, user_input, top_n=5):
     """Compute text similarity using TF-IDF and return top N recommendations."""
     vectorizer = TfidfVectorizer(stop_words='english', ngram_range=(1,3), min_df=1, max_features=8000)
     tfidf_matrix = vectorizer.fit_transform(data['combined_text'])
