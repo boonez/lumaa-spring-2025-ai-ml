@@ -17,9 +17,11 @@ def preprocess_input(user_input):
 def normalize_genre(genre):
     """Normalize genre terms for better matching."""
     genre_mapping = {
-        "romantic": "romance", "sci-fi": "sci fi", "scifi": "sci fi", "science fiction": "sci fi",
+        "romantic": "romance",
+        "sci-fi": "sci fi", "scifi": "sci fi", "science fiction": "sci fi",
         "comedic": "comedy", "dramedy": "comedy drama",
-        "superhero": "action fantasy", "anime": "animation",
+        "superhero": "action fantasy",
+        "anime": "animation",
         "historical": "history"
     }
     return genre_mapping.get(genre.lower().strip(), genre)  # Return mapped genre or original
