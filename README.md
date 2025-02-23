@@ -20,43 +20,43 @@ py recommend.py "I like adventure movies in space" "imdb_top_1000.csv"
 ## Results 
 
 ```bash
-py recommend.py "I like adventure movies in space" "imdb_top_1000.csv"
+py recommend.py "I like adventure movies in space" "imdb_top_1000.csv" 
 Top recommendations:
 1. Aliens (Score: 8.3500)
-2. WALL·E (Score: 5.8873)
-3. The Right Stuff (Score: 5.7730)
-4. The Iron Giant (Score: 5.6767)
-5. Interstellar (Score: 5.1243)
+2. WALL·E (Score: 6.1273)
+3. The Right Stuff (Score: 5.7932)
+4. The Iron Giant (Score: 5.7181)
+5. Interstellar (Score: 5.0697)
 ```
 
 ```bash
-py recommend.py "I like Chris Evans movies" "imdb_top_1000.csv"
+py recommend.py "I like Chris Evans movies" "imdb_top_1000.csv"        
 Top recommendations:
-1. Captain America: Civil War (Score: 7.6001)
-2. Knives Out (Score: 7.4684)
-3. Gifted (Score: 6.8000)
-4. Avengers: Endgame (Score: 6.4897)
-5. The Avengers (Score: 6.4784)
+1. Knives Out (Score: 6.9483)
+2. Gifted (Score: 6.8000)
+3. Avengers: Endgame (Score: 5.0807)
+4. The Avengers (Score: 4.9666)
+5. Captain America: Civil War (Score: 4.9247)
 ```
 
 ```bash
 py recommend.py "romantic" "imdb_top_1000.csv"
 Top recommendations:
 1. Call Me by Your Name (Score: 8.6000)
-2. The Apartment (Score: 7.7089)
-3. Jules et Jim (Score: 7.4424)
-4. Gone with the Wind (Score: 6.8313)
-5. Portrait de la jeune fille en feu (Score: 6.1934)
+2. The Apartment (Score: 7.7074)
+3. Jules et Jim (Score: 7.4763)
+4. Gone with the Wind (Score: 6.6945)
+5. Charade (Score: 6.6389)
 ```
 
 ```bash
-py recommend.py "I am looking for romance movies" "imdb_top_1000.csv"    
+py recommend.py "I am looking for romance movies" "imdb_top_1000.csv" 
 Top recommendations:
 1. Call Me by Your Name (Score: 8.6000)
-2. The Apartment (Score: 7.7408)
-3. Jules et Jim (Score: 7.4474)
-4. Gone with the Wind (Score: 6.7358)
-5. Charade (Score: 6.2661)
+2. The Apartment (Score: 7.7099)
+3. Jules et Jim (Score: 7.4902)
+4. Gone with the Wind (Score: 6.8877)
+5. Charade (Score: 6.1570)
 ```
 ## Salary Expectations
  $4000 a month
