@@ -15,7 +15,10 @@ def preprocess_input(user_input):
 
 
 def normalize_genre(genre):
-    """Normalize genre terms for better matching."""
+    """Normalize genre terms for better matching.
+    This function maps multiple variations of a genre name to a standard format 
+    (e.g., "science fiction" → "sci fi"). If no match is found, the original term is returned.
+    """
     genre_mapping = {
         "romantic": "romance",
         "sci-fi": "sci fi", "scifi": "sci fi", "science fiction": "sci fi",
@@ -37,7 +40,7 @@ def load_dataset(filepath):
     df['Genre'] = df['Genre'].apply(lambda x: ' '.join(set(normalize_genre(g) for g in x.split(','))))
     
     df['combined_text'] = (
-        df['Overview'] + ' ' + (df['Genre'] + ' ') * 2 +
+        df['Overview'] + ' ' + (df['Genre'] + ' ') * 2 + # Doubling genre weight for better impact
         (df['Director'] + ' ') + 
         (df['Star1'] + ' ' + df['Star2'] + ' ' + df['Star3'] + ' ' + df['Star4'] + ' ')
     )
@@ -46,7 +49,10 @@ def load_dataset(filepath):
 
 
 def filter_by_exact_names(data, names):
-    """Filter dataset for exact matches in director or star columns."""
+    """Filter dataset for exact matches in director or star columns.
+    If a name matches the director or any of the listed actors, the movie is included.
+    If no matches are found, we return the full dataset to avoid overly restrictive filtering.
+    """
     if not names:
         return data  # No filtering if no names are provided
 
@@ -57,7 +63,12 @@ def filter_by_exact_names(data, names):
 
 
 def compute_similarity(data, user_input, top_n=5):
-    """Compute text similarity using TF-IDF and return top N recommendations."""
+    """Compute text similarity using TF-IDF and return top N recommendations.
+    - Uses n-grams (1 to 3 words) to improve contextual matching.
+    - Normalizes similarity scores to ensure a uniform scale.
+    - Weighting formula: (IMDB rating + (Meta score / 10)) / 2
+      - This gives additional importance to well-rated movies.
+    """
     vectorizer = TfidfVectorizer(stop_words='english', ngram_range=(1,3), min_df=1, max_features=8000)
     tfidf_matrix = vectorizer.fit_transform(data['combined_text'])
     
@@ -78,7 +89,10 @@ def compute_similarity(data, user_input, top_n=5):
 
 
 def main(user_input, filepath):
-    """Main function to load dataset, compute recommendations, and display results."""
+    """Main function to load dataset, filter by names, compute recommendations, and display results.
+    - Names are manually extracted using `split(',')` rather than regex to allow flexibility in input format.
+    - If no name filtering is needed, the full dataset is used.
+    """
     data = load_dataset(filepath)
     names = user_input.split(',')  # Extract names manually if needed
     filtered_data = filter_by_exact_names(data, names)
